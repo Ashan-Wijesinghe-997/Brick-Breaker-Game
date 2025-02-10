@@ -1,6 +1,7 @@
 package brickBreaker;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -22,7 +23,28 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
         addKeyListener(this);
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
-        time = new Timer(delay,this);
+        timer = new Timer(delay,this);
+        timer.start();
+    }
+
+    public void point(Graphics g){
+        //background
+        g.setColor(Color.black);
+        g.fillRect(1,1,692,592);
+
+        //borders
+        g.setColor(Color.yellow);
+        g.fillRect(0,0,3,592);
+        g.fillRect(0,0,692,2);
+        g.fillRect(691,0,3,592);
+
+        // he paddel
+        g.setColor(Color.gray);
+        g.fillRect(playerX, 550,100,0);
+
+        // the ball
+        g.setColor(Color.CYAN);
+        g.fillRect(ballposX,ballposY,20,20);
     }
 
     private void setFocusTraversalKeysEnabled(boolean focusTraversalKeysEnabled) {
@@ -40,12 +62,30 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {
+    public void keyReleased(KeyEvent e) {
 
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {
+    public void keyPressed(KeyEvent e) {
+        if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+            if(playerX >=600){
+                playerX = 600;
+            } else {
+                moveRight();
+            }
+
+        }
+        if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+            if(playerX <10){
+                playerX = 10;
+            } else {
+                moveLeft();
+            }
+
+        }
 
     }
+
+
 }
