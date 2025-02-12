@@ -23,8 +23,8 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
         addKeyListener(this);
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
-        timer = new Timer(delay,this);
-        timer.start();
+        //timer = new Timer(delay,this);
+        //timer.start();
     }
 
     public void point(Graphics g){
@@ -47,7 +47,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
         g.fillRect(ballposX,ballposY,20,20);
     }
 
-    private void setFocusTraversalKeysEnabled(boolean focusTraversalKeysEnabled) {
+    public void setFocusTraversalKeysEnabled(boolean focusTraversalKeysEnabled) {
     }
 
 
@@ -85,6 +85,14 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
 
         }
 
+    }
+    public void moveRight() {
+        play = true;
+        playerX+=20;
+    }
+    public void moveLeft() {
+        play = true;
+        playerX-=20;
     }
 
 
